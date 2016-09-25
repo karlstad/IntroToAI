@@ -1,0 +1,1 @@
+void readBoard(char** board, std::string filename);
