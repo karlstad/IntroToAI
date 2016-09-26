@@ -13,18 +13,18 @@ int main(){
 	Node* backtrackingNode;
 
 	readBoard(board, "boards/board-1-1.txt");
-	cout << &board << endl;
+	
 	backtrackingNode = findPath(board);
 	
 	//Solution found, backtracking the steps
 	while(backtrackingNode->parent != NULL){
-		backtrackingNode->value = 'o';
 		backtrackingNode = backtrackingNode->parent;
+		backtrackingNode->value = 'o';
 	}
-
-	for(int i = 0; i < 7; i++){
-		for(int j = 0; j < 20; j++){		
-			cout << board[i][j].value;
+	backtrackingNode->value = 'A';
+	for(int y = 0; y < 7; y++){
+		for(int x = 0; x < 20; x++){		
+			cout << board[x][y].value;
 		}
 		cout << endl;
 	}
