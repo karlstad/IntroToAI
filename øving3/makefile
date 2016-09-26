@@ -1,7 +1,7 @@
 CC=g++
-CFLAGS=-c -Wall -std=c++11
+CFLAGS=-c -std=c++11
 LDFLAGS= -std=c++11
-SOURCES=readboard.cpp main.cpp
+SOURCES=readboard.cpp node.cpp main.cpp
 OBJECTS=$(SOURCES:.c=.o)
 EXECUTABLE=AStar
 

@@ -6,7 +6,7 @@
 
 using namespace std;
 
-void readBoard(char** board, std::string filename){
+void readBoard(Node** board, string filename){
 	ifstream in(filename);
 	if(!in){
 		cout << "Could not open file " << filename << endl;
@@ -15,11 +15,13 @@ void readBoard(char** board, std::string filename){
 	int j = 0;
 	while(getline(in, line)){
 		for(int i = 0; i < line.length(); i++){
-			board[j][i] = line[i];
-			cout << line[i];
+			board[i][j].value = line[i];
+			board[i][j].x = i;
+			board[i][j].y = j;
+			//cout << line[i];
 		}
 		j++;
-		cout << endl;
+		//cout << endl;
 	}
 
 	in.close();

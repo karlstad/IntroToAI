@@ -1,1 +1,3 @@
-void readBoard(char** board, std::string filename);
+#include "node.h"
+
+void readBoard(Node** board, std::string filename);
