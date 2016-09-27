@@ -10,11 +10,14 @@ struct Node{
 	char value;
 	Node* parent;
 	States state;
+	std::vector<Node*> kids;
 
 
 	Node() : x(0), y(0), g(0), h(0), f(0), value(0), parent(NULL), state(UNKNOWN){}
 	//bool operator<(const Node& node) {return f < node.f;}
 };
 
-Node* findPath(Node** board);
-//void propagate_path_improvements(Node* node);
+Node* findPath_AStar(Node** board);
+Node* findPath_BFS(Node** board);
+Node* findPath_Dijkstra(Node** board);
+void propagate_path_improvements(Node* node);
