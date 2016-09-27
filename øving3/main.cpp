@@ -5,25 +5,24 @@
 using namespace std;
 
 int main(){
-	Node** board = new Node*[20];
-	for(int i = 0; i < 20; i++){
-		board[i] = new Node[7];
+	Node** board = new Node*[BOARD_WIDTH];
+	for(int i = 0; i < BOARD_WIDTH; i++){
+		board[i] = new Node[BOARD_HEIGTH];
 	}
 
 	Node* backtrackingNode;
 
-	readBoard(board, "boards/board-1-1.txt");
+	readBoard(board, "boards/board-1-4.txt");
 	
-	backtrackingNode = findPath(board);
+	backtrackingNode = findPath(board)->parent;
 	
 	//Solution found, backtracking the steps
 	while(backtrackingNode->parent != NULL){
-		backtrackingNode = backtrackingNode->parent;
 		backtrackingNode->value = 'o';
+		backtrackingNode = backtrackingNode->parent;
 	}
-	backtrackingNode->value = 'A';
-	for(int y = 0; y < 7; y++){
-		for(int x = 0; x < 20; x++){		
+	for(int y = 0; y < BOARD_HEIGTH; y++){
+		for(int x = 0; x < BOARD_WIDTH; x++){		
 			cout << board[x][y].value;
 		}
 		cout << endl;

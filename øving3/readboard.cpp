@@ -18,6 +18,7 @@ void readBoard(Node** board, string filename){
 			board[i][j].value = line[i];
 			board[i][j].x = i;
 			board[i][j].y = j;
+			board[i][j].cost = costMap(line[i]);
 			//cout << line[i];
 		}
 		j++;
@@ -25,4 +26,25 @@ void readBoard(Node** board, string filename){
 	}
 
 	in.close();
+}
+
+int costMap(char value){
+	switch(value){
+		case 'w':
+			return 100;
+		case 'm':
+			return 50;
+		case 'f':
+			return 10;
+		case 'g':
+			return 5;
+		case 'r':
+			return 1;
+		case '.':
+			return 1;
+		case '#':
+			return 10000;
+		default:
+			return 0;
+	}
 }
