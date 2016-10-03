@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 
 #include "readboard.h"
 
@@ -8,7 +9,6 @@ int main(){
 	string small_board_files[] = {"boards/board-1-1.txt", "boards/board-1-2.txt", "boards/board-1-3.txt", "boards/board-1-4.txt"};
 	string large_board_files[] = {"boards/board-2-1.txt", "boards/board-2-2.txt", "boards/board-2-3.txt", "boards/board-2-4.txt"};
 
-
 	Node* backtrackingNode;
 
 	for(int i = 0; i < 4; i++){
@@ -16,7 +16,7 @@ int main(){
 		for(int i = 0; i < BOARD_WIDTH; i++){
 			board[i] = new Node[BOARD_HEIGTH];
 		}
-		readBoard(board, small_board_files[i]);
+		readBoard(board, large_board_files[i]);
 		
 		backtrackingNode = findPath_BFS(board)->parent;
 		cout << "Cost to destination: " << backtrackingNode->g << endl;
@@ -32,7 +32,7 @@ int main(){
 			}
 			cout << endl;
 		}
-		cout << endl;
+		cout << endl << endl;
 
 		for(int i = 0; i < BOARD_WIDTH; i++){
 			delete[] board[i];

@@ -1,7 +1,7 @@
 #include <vector>
 
-#define BOARD_WIDTH 20
-#define BOARD_HEIGTH 7
+#define BOARD_WIDTH 40
+#define BOARD_HEIGTH 10
 
 enum States {UNKNOWN, OPEN, CLOSED};
 
@@ -14,7 +14,6 @@ struct Node{
 
 
 	Node() : x(0), y(0), g(0), h(0), f(0), value(0), parent(NULL), state(UNKNOWN){}
-	//bool operator<(const Node& node) {return f < node.f;}
 };
 
 Node* findPath_AStar(Node** board);

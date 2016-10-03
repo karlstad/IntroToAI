@@ -1,0 +1,321 @@
+Assignment 3 - Using the A* Algorithm 
+Øyvind R. Karlstad
+
+A.1 Grids with obstacles
+Cost to destination: 15
+....................
+....................
+.........######.....
+........oooA..#..B..
+........o######ooo..
+........oooooooo....
+....................
+
+Cost to destination: 32
+ooooooo#............
+o....#o#............
+o...#oo#............
+A..#.o#..ooooooooooB
+....#oo#.o..#.......
+.....#oo#o.#........
+......#ooo#.........
+ 
+Cost to destination: 27
+.........oooooooooo.
+.........o#.......o.
+.......##oo#......o.
+......#oA#o#......o.
+......#o#oo#......o.
+......#ooo#.......o.
+.......###........oB
+
+Cost to destination: 25
+Ao#.......#......#..
+#o#.#####.#.####.#..
+oo#ooooo#.#....#....
+o##o###o######.#####
+oo#oB#oo#....#...#..
+#o####o##.##.#.#.##.
+.oooooo....#...#....
+
+A.2 Grids with different cell costs
+A*: 
+Cost to destination: 78
+mmmmmffffrrrrrrrrAoooooooooooorrfffmmmmm
+mmmffffffffrrrrrrrrrrrrrrrrrrorfffffmmmm
+mmfffffffffffffffffffffffffffoffffffmmmm
+mmfffffffffffffwwwwwfffffffffofffffffmmm
+mfffffffffffffwwwwwwwffffffffoffffffmmmm
+mmffffffffffffwwwwwwwffooooooorrrrrrmmmm
+mmmffffffffffffwwwwwfffoffffffffrffffmmm
+mmfffffffffffffffffffffoffffffffrfffffmm
+mmffffffffggggggggooooooggggggggggffffmm
+mmmffffggggggggggBogggggggggggggggggffmm
+
+
+A*: 
+Cost to destination: 71
+ffffffffffgggrgggggggrggggfffffffrrfffff
+ffAffffffgggrrggggggrrggffffffffrrffffff
+ffofffgggggrrggggggrrgggffffrrrrrfffffff
+ggoooogggggrggggrrrrgggffffrrfffffffffff
+gggggooooooorrrrrgggggffffrrffffffffffff
+ggggrrgggggoggggggggffffffrfffffffffffff
+gggrrggggggooggggggffffoooooofffffffffff
+ggrrgggffgggooooggffoooofrfforrrrfffffff
+ggrggffffffffffooooooffffrffofffrrffffff
+ggrgfffffffffffffffffffffrffBffffrrfffff
+
+
+A*: 
+Cost to destination: 595
+gggggggggwwwgggggmmmmmmmmmmBooooooommmmm
+gggggggggwwwwggggmmmmmmmmmmmmmmmmmomgggg
+ggggggggggwwwwggggmmmmmmmmmmmmmmggoggggg
+ffgggggggggwwwwggggmmmmmmmmmggggggorgggg
+ffggggggggggwwwwwwwwwwooooooooooooorrrrr
+ffffggggggggggwwwwwwwwowwwwggggggggggggg
+foooooooooooooooooooooowwwwwwggggggmmmmm
+fAfffffffffgggggggggmmmmmmwwwwmmmmmmmmmm
+fffffffffffffffmmmmmmmmmmmmmwwwmmmmmmmmm
+ffffffffffmmmmmmmmmmmmmmmmmmwwwmmmmmmmmm
+
+
+A*: 
+Cost to destination: 160
+wwwwwgggggggggooooooooooooooooooooorrrrr
+wwwwwwwgggggggogggggggggggggwwwwwgorgggg
+wwwwwwwwwwwgggAgggggggwwwwwwwwwwwwowgggg
+wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwowwwww
+wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwowwwww
+wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwoowwwww
+wwwwwwwwgggggBgggggwwwwwwwwwwwwwwowwwwww
+wwwwggggggfffoffgggggggggwwwwwwwwowwwwww
+wwggggfffffffoffffffggggggggggggoogwwwww
+wgggfffrrrrrrooooooooooooooooooooggggggg
+
+A.3 Comparison with BFS and Dijkstra's algorithm
+As in the assignment text, x is closed, * is opened and o is the path chosen
+
+
+Board 1-1
+AStar: 					BFS: 					Dijkstra: 
+Cost to destination: 15
+........**********..	xxxxxxxxxxxxxxxxxxxx	xxxxxxxxxxxxxxxxxx*.
+.......*xxxxxxxxxx*.	xxxxxxxxxxxxxxxxxxxx	xxxxxxxxoooooooooox*
+......*xx******xx*..	xxxxxxxxx######xxxxx    xxxxxxxxo******xxo*.
+.....*xxoooAxx*x*B..	xxxxxxxxoooAxx#xxxxx    xxxxxxxxoooAxx*xxB..
+......*xo******ooo*.	xxxxxxxxo######xxoxx    xxxxxxxxx******xxx*.
+.......*ooooooooxx*.	xxxxxxxxooooooooooxx    xxxxxxxxxxxxxxxxxxx*
+........**********..	xxxxxxxxxxxxxxxxxxxx    xxxxxxxxxxxxxxxxxx*.
+
+
+
+
+Board 1-2
+AStar: 					BFS: 					Dijkstra: 
+Cost to destination: 32
+ooooooo*............	xxxxooo#xxxxxxxxxxxx    ooooooo*xxxxxxxx*... 
+oxxxx*o*............	xxxoo#o#xxxxxxxxxxxx    oxxxx*o*xxxxxxxxx*..
+oxxx*oo*.**********.	xxoo#oo#xxxxxxxxxxxx    oxxx*oo*xxxxxxxxxx*.
+Axx*xo*.*ooooooooooB	Aoo#xo#xxxxooooooooB    Axx*xo*xxooooooooooB
+xxxx*oo**oxx*******.	xxxx#oo#xxoo#xxxxxxx    xxxx*oo*xoxx*xxxxx*.
+xxxxx*oo*ox*........	xxxxx#oo#oo#xxxxxxxx    xxxxx*oo*ox*xxxxx*..
+xxxxxx*ooo*.........	xxxxxx#ooo#xxxxxxxxx    xxxxxx*ooo*xxxxx*...
+
+
+
+
+Board 1-3
+AStar: 					BFS: 					Dijkstra: 
+Cost to destination: 27
+........*oooooooooox	xxxxxxxxxoooxxxxxxxx	xxxxxxxxxooooooooooo
+.......*xo*xxxxxxxox    xxxxxxxxxo#ooxxxxxxx   	xxxxxxxxxo*xxxxxxxxo
+.......**oo*xxxxxxox    xxxxxxx##oo#oxxxxxxx    xxxxxxx**oo*xxxxxxxo
+......*oA*o*xxxxxxox    xxxxxx#oA#o#oxxxxxxx    xxxxxx*oA*o*xxxxxxxo
+......*o*oo*xxxxxxox    xxxxxx#o#oo#oxxxxxxx    xxxxxx*o*oo*xxxxxxxo
+......*ooo**xxxxxxo*    xxxxxx#ooo#xoxxxxxxx    xxxxxx*ooo*xxxxxxxxo
+.......***.*xxxxxxoB	xxxxxxx###xxoooooooB    xxxxxxx***xxxxxxxxxB
+
+
+Board 1-4
+AStar: 					BFS: 					Dijkstra: 
+Cost to destination: 25
+Ao*.......#......#..	Ao#xxxxxxx#xxxxxx#xx    Ao*x*.....#......#..
+*o******#.#.####.#..	#o#x#####x#x####x#xx    *o*x****#.#.####.#..
+oo*ooooo*.#....#....	oo#ooooo#x#xxxx#xxxx    oo*ooooo*.#....#....
+o**o***o***###.#####	o##o###o######x#####	o**o***o*****#.#####
+oo*oB*oo*xx*.#...#..	oo#oB#oo#xxxx#xxx#xx    oo*oB*oo*xxxx*...#..
+*o****o**x*#.#.#.##.	#o####o##x##x#x#x##x    *o****o**x**x*.#.##.
+xooooooxxxx*...#....	xooooooxxxx#xxx#xxxx    xooooooxxxx*xx*#....
+
+Some general conclusions can be drawn from these paths. I don't feel like it is necessary to comment every case, because the differences we see can be explained generally.
+Since the paths chosen have the same cost for all algorithms, the only source for a difference in paths are that each node don't get evaluated at the same time. Also for the BFS case, all nodes are evaluated so it is almost arbitrary which way path the algorithm chooses in the open areas.
+Looking at number of opened cells, we can see that there are a pretty large difference. This is expected since the A* algorithm chooses "best first", Dijkstra "lowest cost from source first" and BFS "opened first". To get a shortest path from BFS, it had to be tuned to run as long as not all cells had been opened. Without it the algorithm would just return the currently best path to the goal when the goal cell was opened. Therefore it has significantly more opened cells than the other algorithms.
+
+
+
+Board 2-1
+A*: 
+Cost to destination: 78
+mmmm*xxxxxxxxxxxxAooooooooooooxxxxx*mmmm
+mmmf*xxxxxxxxxxxxxxxxxxxxxxxxoxxxxx*mmmm
+mmfff*xxxxxxxxxxxxxxxxxxxxxxxoxxxxxx*mmm
+mmffff*xxxxxxxx*****xxxxxxxxxoxxxxxxx*mm
+mffffff*xxxxxx*wwwww*xxxxxxxxoxxxxxx*mmm
+mmffffff*xxxxx*wwwww*xxoooooooxxxxxx*mmm
+mmmfffff*xxxxxx*www*xxxoxxxxxxxxxxxxx*mm
+mmfffffff**xxx*fff**xxxoxxxxxxxxxxxxx*mm
+mmffffffff*xxxx*g*ooooooxxxxxxxxxxxx*fmm
+mmmffffgggg**x*ggBoxxxxxxxxxxxxxxxxxx*mm
+
+
+BFS: 
+Cost to destination: 78
+xxxxxxxxxxxxxxxxxAxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxoooooooooooooxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxoxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxoxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxoxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxoooooooxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxoxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxoxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxoooooxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxBooxxxxxxxxxxxxxxxxxxxx
+
+Dijkstra: 
+Cost to destination: 78
+mmm**xxxxxxxxxxxxAooooooooooooxxxxx*mmmm
+mm*xxxxxxxxxxxxxxxxxxxxxxxxxxoxxxxxx*mmm
+mmf*xxxxxxxxxxxxxxxxxxxxxxxxxoxxxxxx*mmm
+mmff*xxxxxxxxxx*****xxxxxxxxxoxxxxxxx*mm
+mffff*xxxxxxxx*wwwww*xxxxxxxxoxxxxxx*mmm
+mmffff*xxxxxxx*wwwww*xxoooooooxxxxxxx*mm
+mmmffff*xxxxxxx*www*xxxoxxxxxxxxxxxxx*mm
+mmffffff*xxxxxx*f**xxxxoxxxxxxxxxxxxxx*m
+mmfffffff*xxxxx**oooooooxxxxxxxxxxxxxx*m
+mmmffffggg*xxx*ggBxxxxxxxxxxxxxxxxxxxx*m
+
+
+Board 2-2
+A*: 
+Cost to destination: 71
+xxxxxx*fffg*xxx*ggg*xxx*ggfffffffrrfffff
+xxAxxxx****xxxx****xxxx*ffff*fffrrffffff
+xxoxxxxxxxxxxxxxxxxxxxx*fff*x*rrrfffffff
+xxooooxxxxxxxxxxxxxxxx*fff*xx*ffffffffff
+xxxxxoooooooxxxxxxxxx*fff*xx*fffffffffff
+xxxxxxxxxxxoxxxxxxxx******x**fffffffffff
+xxxxxxxxxxxooxxxxx**xxxoooooo****fffffff
+xxxxxxx**xxxooooxxxxooooxxxxoxxxx*ffffff
+xxxxx**ff**xxxxooooooxxx*xx*o***x*ffffff
+xxxxx*fffff****xxxxxx****xx*Bfff*rrfffff
+
+BFS: 
+Cost to destination: 71
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxAxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxoxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxoxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxooooooooooxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxoxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxooxxxxxxxoooooooooxxxxxxxxxxx
+xxxxxxxxxxxxooooxxxxoxxxxxxxoxxxxxxxxxxx
+xxxxxxxxxxxxxxxooooooxxxxxxxoxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxBxxxxxxxxxxx
+
+Dijkstra: 
+Cost to destination: 71
+xxxxxxxxxxxxxxxxxxxxxxxxxx*fffff*x*fffff
+xxAxxxxxxxxxxxxxxxxxxxxxx*ff****xx*fffff
+xxoxxxxxxxxxxxxxxxxxxxxx*f**xxxxx*ffffff
+xxooooxxxxxxxxxxxxxxxxxx**xxx****fffffff
+xxxxxoooooooxxxxxxxxxxx**xxxx*ffffffffff
+xxxxxxxxxxxoxxxxxxxxxx*xxxxxx*ffffffffff
+xxxxxxxxxxxooxxxxxxxxxxoooooox***fffffff
+xxxxxxxxxxxxooooxxxxooooxxxxoxxxx*ffffff
+xxxxxxxxxxxxxxxooooooxxxxxx*o***xx*fffff
+xxxxxxx**xxxxxxxxxxxxx**xxx*Bfff*xx*ffff
+
+
+Board 2-3
+A*: 
+Cost to destination: 595
+xxxxxxxxxxxxxxxxxxxxxxxx*mmBooooooo*mmmm
+xxxxxxxxxxxxxxxxxxxxxxxxx*mm******o*gggg
+xxxxxxxxxxxxxxxxxxxxxxxxxx*m****x*o*gggg
+xxxxxxxxxxxxxxxxxxxxxxxxxxx*xxxxxxo*gggg
+xxxxxxxxxxxxxxxxxxxxxxooooooooooooo*rrrr
+xxxxxxxxxxxxxxxxxxxxxxoxxx*xxxxxxx*ggggg
+xooooooooooooooooooooooxxxx**xxxx*gmmmmm
+xAxxxxxxxxxxxxxxxxxxxxxxxxxx*****mmmmmmm
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxx*wmmmmmmmmm
+xxxxxxxxxxxxxxxxxxxxxxxxxxxx*wwmmmmmmmmm
+
+BFS: 
+Cost to destination: 595
+xxxxxxxxxxxxxxxxxxxxxxxxxxxBoooooooxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxoxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxoxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxoxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxooooooooooxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxoxxxxxxxxxxxxxx
+xxxxxxooooooooooooooooxxxoxxxxxxxxxxxxxx
+xAoooooxxxxxxxxxxxxxxoooooxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+Dijkstra: 
+Cost to destination: 595
+xxxxxxxxxxxxxxxxxxxxxxxx*mmBooooooo*mmmm
+xxxxxxxxxxxxxxxxxxxxxxxxx*mm******o*gggg
+xxxxxxxxxxxxxxxxxxxxxxxxxx*m****xxox****
+xxxxxxxxxxxxxxxxxxxxxxoooox*oooooooxxxxx
+xxxxxxxxxxxxxxxxxxxxxxoxxooooxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxoxxx*xxxxxxxxxxxxx
+xooooooooooooooooooooooxxxx**xxxxxx*****
+xAxxxxxxxxxxxxxxxxxxxxxxxxxx*******mmmmm
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxx*wmmmmmmmmm
+xxxxxxxxxxxxxxxxxxxxxxxxxxxx*wwmmmmmmmmm
+
+
+
+Board 2-4
+A*: 
+Cost to destination: 160
+wwww*xxxxxxxxxoooooooooooooooooooooxxxxx
+wwwww*xxxxxxxxoxxxxxxxxxxxxx*****xoxxxxx
+wwwwww*xxxxxxxAxxxxxxxx*****wwwww*o*xxxx
+wwwwwww****xxxxxxxxxxx*wwwwwwwwww*o*****
+wwwwwwwwwww***********wwwwwwwwwww*o*wwww
+wwwwwwwwwwwwwwww***wwwwwwwwwwwww*oo*wwww
+wwwwwwwwgggggB**xxx******wwwwwww*o*wwwww
+wwwwggggg****oxxxxxxxxxxx********o*wwwww
+wwggggf**xxxxoxxxxxxxxxxxxxxxxxxoox*wwww
+wgggff*xxxxxxooooooooooooooooooooxxx*ggg
+
+BFS: 
+Cost to destination: 160
+xxxxxxxxxxxxxxxxxxxxxxxxxxxoooooooxxxxxx
+xxxxxxxxxxxxxxxxxxxxxoooooooxxxxxoxxxxxx
+xxxxxxxxxxxxxxAoooooooxxxxxxxxxxxooxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxoxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxoxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxooxxxxx
+xxxxxxxxxxxxxBxxxxxxxxxxxxxxxxxxxoxxxxxx
+xxxxxxxxxxxxxoxxxxxxxxxxxxxxxxxxxoxxxxxx
+xxxxxxxxxxxxxoxxxxxxxxxxxxxxxxxxooxxxxxx
+xxxxxxxxxxxxxooooooooooooooooooooxxxxxxx
+
+Dijkstra: 
+Cost to destination: 160
+www*xxxxxxxxxxoooooooooooooooooooooxxxxx
+wwww*xxxxxxxxxoxxxxxxxxxxxxx*****xoxxxxx
+wwwww**xxxxxxxAxxxxxxxxxxx**wwwww*o*xxxx
+wwwwwww****xxxxxxxxxxx****wwwwwww*o*****
+wwwwwwwwwww***********wwwwwwwwwww*o*wwww
+wwwwwwwwwwwwwwww***wwwwwwwwwwwww*oo*wwww
+wwwwwwww**gggB**xxx******wwwwwww*o*wwwww
+wwwwggg*xx***oxxxxxxxxxxx********o*wwwww
+wwgggg*xxxxxxoxxxxxxxxxxxxxxxxxxoox*****
+wgggf*xxxxxxxooooooooooooooooooooxxxxxxx
