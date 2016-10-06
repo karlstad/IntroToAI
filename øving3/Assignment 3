@@ -39,6 +39,7 @@ oo#oB#oo#....#...#..
 .oooooo....#...#....
 
 A.2 Grids with different cell costs
+Path chosen is marked with "o"
 A*: 
 Cost to destination: 78
 mmmmmffffrrrrrrrrAoooooooooooorrfffmmmmm
@@ -151,7 +152,7 @@ xooooooxxxx*...#....	xooooooxxxx#xxx#xxxx    xooooooxxxx*xx*#....
 
 Some general conclusions can be drawn from these paths. I don't feel like it is necessary to comment every case, because the differences we see can be explained generally.
 Since the paths chosen have the same cost for all algorithms, the only source for a difference in paths are that each node don't get evaluated at the same time. Also for the BFS case, all nodes are evaluated so it is almost arbitrary which way path the algorithm chooses in the open areas.
-Looking at number of opened cells, we can see that there are a pretty large difference. This is expected since the A* algorithm chooses "best first", Dijkstra "lowest cost from source first" and BFS "opened first". To get a shortest path from BFS, it had to be tuned to run as long as not all cells had been opened. Without it the algorithm would just return the currently best path to the goal when the goal cell was opened. Therefore it has significantly more opened cells than the other algorithms.
+Looking at number of opened cells, we can see that there are a pretty large difference. This is expected since the A* algorithm chooses "best first", Dijkstra "lowest cost from source first" and BFS "opened first". To get a shortest path from BFS, it had to be tuned to run as long as not all cells had been opened. Without it the algorithm would just return the currently best path to the goal, when the goal cell was opened. Therefore it has significantly more opened cells than the other algorithms.
 
 
 
@@ -253,7 +254,7 @@ xxxxxxxxxxxxxxxxxxxxxxxxxxxxx*wmmmmmmmmm
 xxxxxxxxxxxxxxxxxxxxxxxxxxxx*wwmmmmmmmmm
 
 BFS: 
-Cost to destination: 595
+Cost to destination: 542
 xxxxxxxxxxxxxxxxxxxxxxxxxxxBoooooooxxxxx
 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxoxxxxx
 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxoxxxxx
@@ -319,3 +320,5 @@ wwwwwwww**gggB**xxx******wwwwwww*o*wwwww
 wwwwggg*xx***oxxxxxxxxxxx********o*wwwww
 wwgggg*xxxxxxoxxxxxxxxxxxxxxxxxxoox*****
 wgggf*xxxxxxxooooooooooooooooooooxxxxxxx
+
+Much of the discussion is the same for these maps, so I won't repeat myself too much. The algorithm's open and closed lists have varying sizes because of the efficiency of the algorithms. Which path they choose in equal cost cases are arbitrary depending on when the certain nodes are evaluated. What they should do though, is find a path that has the least cost independant of the algorithm chosen. As far as I'm concerned, the reason board 2-3 gives a different cost when using BFS is because it evaluates all paths. This may have resulted in finding a path that the other algorithms missed. 
